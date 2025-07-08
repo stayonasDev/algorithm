@@ -8,6 +8,7 @@ class Main{
         StringBuilder sb = new StringBuilder();
         String str = br.readLine();
 
+        
         for (String token : str.split(" ")) {
             sb.append(token);
         }
