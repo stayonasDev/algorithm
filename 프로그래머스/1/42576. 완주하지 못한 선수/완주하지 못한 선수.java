@@ -2,17 +2,19 @@ import java.util.*;
 
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        HashMap<String, Integer> hashMap = new HashMap<>();
-        for (String string : completion){
-            hashMap.put(string, hashMap.getOrDefault(string, 0) + 1);
+        Map<String, Integer> count = new HashMap<>();
+        
+        for(String name : participant){
+            count.putIfAbsent(name , 0);
+            count.put(name, count.get(name) + 1);
         }
-
-        for (String string : participant) {
-            if (hashMap.getOrDefault(string, 0) == 0) {
-                return string;
-            }
-            hashMap.put(string, hashMap.get(string) - 1);
+        
+        for(String name : completion){
+            int v = count.get(name) - 1;
+            count.put(name, v);
+            if (v == 0) count.remove(name);
         }
-        return null;
+        
+        return count.keySet().iterator().next();
     }
 }
