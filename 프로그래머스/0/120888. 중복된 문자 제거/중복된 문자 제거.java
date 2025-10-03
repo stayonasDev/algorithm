@@ -1,0 +1,18 @@
+import java.util.Set;
+import java.util.HashSet;
+
+
+class Solution {
+    public String solution(String myString) {
+        Set<Character> used = new HashSet<>();
+        
+        StringBuilder builder = new StringBuilder();
+        for(char c : myString.toCharArray()){
+           if(used.contains(c)) continue;
+           used.add(c);
+           builder.append(c);
+        }
+        
+        return builder.toString();
+    }
+}
