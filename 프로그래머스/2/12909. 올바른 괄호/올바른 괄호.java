@@ -2,23 +2,20 @@ import java.util.*;
 
 class Solution {
     boolean solution(String s) {
-        ArrayDeque<Character> deque = new ArrayDeque<>();
-        char[] array = s.toCharArray();
+        ArrayDeque<String> stack = new ArrayDeque();
         
-        for(char c : array){
-            if(c == ')'){
-                if(deque.isEmpty()){
-                    return false;
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '('){
+                stack.push("(");
+            }else{
+                if(!stack.isEmpty()){
+                    stack.pop();
                 }else{
-                    deque.poll();
+                    return false;
                 }
-            }else
-                deque.add(c);
+            }
         }
         
-        if(deque.isEmpty())
-            return true;
-        else
-            return false;
+        return stack.isEmpty() ? true : false;
     }
 }
